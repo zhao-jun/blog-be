@@ -15,7 +15,12 @@ public class BlogServiceImpl implements IBlogService {
     private BlogMapper blogMapper;
 
     @Override
-    public List<Blog>  getBlogList (int pageNum,int pageSize) {
+    public List<Blog>  getList (int pageNum,int pageSize) {
         return blogMapper.selectList();
+    }
+
+    @Override
+    public Integer add (Blog blog) {
+        return blogMapper.insertSelective(blog);
     }
 }

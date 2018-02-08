@@ -8,7 +8,7 @@ CREATE TABLE `blog_info` (
   `title` VARCHAR(64) NOT NULL COMMENT '博客标题',
   `type` INT DEFAULT 0 COMMENT '博客类型',
   `content` TEXT NOT NULL COMMENT '博客内容',
-  `create_time` timestamp NOT NULL DEFAULT current_timestamp COMMENT '创建时间',
-  `update_time` TIMESTAMP NOT NULL DEFAULT current_timestamp ON UPDATE current_timestamp COMMENT '修改时间',
+  `create_time` timestamp DEFAULT current_timestamp COMMENT '创建时间',
+  `update_time` TIMESTAMP DEFAULT current_timestamp ON UPDATE current_timestamp COMMENT '修改时间',
   PRIMARY KEY (`id`)
 )

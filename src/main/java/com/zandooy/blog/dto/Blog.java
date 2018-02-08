@@ -1,14 +1,17 @@
 package com.zandooy.blog.dto;
 
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 public class Blog {
     private Integer id;
 
+    @NotNull(message = "标题必传")
     private String title;
 
     private Integer type;
 
+    @NotNull(message = "内容必传")
     private String content;
 
     private Date createTime;

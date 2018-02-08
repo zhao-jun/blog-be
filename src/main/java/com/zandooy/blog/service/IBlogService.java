@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface IBlogService {
 
-    List<Blog> getBlogList (int pageNum,int pageSize);
+    List<Blog> getList (int pageNum,int pageSize);
+
+    Integer add (Blog blog);
 }
