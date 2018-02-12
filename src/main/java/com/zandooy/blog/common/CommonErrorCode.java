@@ -1,13 +1,13 @@
 package com.zandooy.blog.common;
 
-public enum BlogErrorCode implements ErrorCode {
+public enum CommonErrorCode implements ErrorCode {
 
-    NO_BLOG_MESSAGE("NO_BLOG_MESSAGE", "未找到对应博客文章");
+    SUCCESS("0", "成功");
 
     private String code;
     private String msg;
 
-    BlogErrorCode(String code, String msg) {
+    CommonErrorCode(String code, String msg) {
         this.code = code;
         this.msg = msg;
     }

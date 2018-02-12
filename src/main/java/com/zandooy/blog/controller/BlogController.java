@@ -24,10 +24,18 @@ public class BlogController {
     }
 
     @PostMapping("blog")
-    public Integer addBlog (@Valid Blog blog, BindingResult result) throws Exception {
+    public void addBlog (@Valid Blog blog, BindingResult result) throws Exception {
         if (result.hasErrors()) {
             throw new ValidationException(result.getFieldError().getDefaultMessage());
         }
-        return blogService.add(blog);
+        blogService.add(blog);
+    }
+
+    @GetMapping("blog")
+    public void getBlog (@Valid Blog blog, BindingResult result) throws Exception {
+        if (result.hasErrors()) {
+            throw new ValidationException(result.getFieldError().getDefaultMessage());
+        }
+        blogService.add(blog);
     }
 }

@@ -1,5 +1,8 @@
 package com.zandooy.blog.handle;
 
+import com.zandooy.blog.common.CommonErrorCode;
+import com.zandooy.blog.common.ErrorCode;
+import com.zandooy.blog.dto.Result;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -21,6 +24,10 @@ public class ResponseAdvice implements ResponseBodyAdvice<Object> {
 
     @Override
     public Object beforeBodyWrite(Object body, MethodParameter methodParameter, MediaType mediaType, Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
-        return body;
+        if (body instanceof Result) {
+            return body;
+        } else {
+            return new Result<>(CommonErrorCode.SUCCESS, body);
+        }
     }
 }

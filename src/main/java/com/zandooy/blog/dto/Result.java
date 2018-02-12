@@ -1,9 +1,11 @@
 package com.zandooy.blog.dto;
 
+import com.zandooy.blog.common.ErrorCode;
+
 public class Result<T> {
 
     /** 错误码. */
-    private Integer code;
+    private String code;
 
     /** 提示信息. */
     private String msg;
@@ -11,17 +13,29 @@ public class Result<T> {
     /** 具体的内容. */
     private T data;
 
-    public Result(Integer code, String msg, T data) {
+    public Result(String code, String msg, T data) {
         this.code = code;
         this.msg = msg;
         this.data = data;
     }
 
-    public Integer getCode() {
+    public Result(ErrorCode errorCode) {
+        this.code = errorCode.getCode();
+        this.msg = errorCode.getMsg();
+        this.data = null;
+    }
+
+    public Result(ErrorCode errorCode, T data) {
+        this.code = errorCode.getCode();
+        this.msg = errorCode.getMsg();
+        this.data = data;
+    }
+
+    public String getCode() {
         return code;
     }
 
-    public void setCode(Integer code) {
+    public void setCode(String code) {
         this.code = code;
     }
 

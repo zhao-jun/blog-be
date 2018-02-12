@@ -15,9 +15,9 @@
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="type" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="content" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
       <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
-      <arg column="content" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">

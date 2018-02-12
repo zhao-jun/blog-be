@@ -15,12 +15,14 @@ public class ExceptionHandle {
 
     @ExceptionHandler
     @ResponseBody
+    public Result handle (ValidationException e) {
+        // 不符合验证项
+        return new Result("-1", e.getMessage(), null);
+    }
+
+    @ExceptionHandler
+    @ResponseBody
     public Result handle (Exception e) {
-        if (e instanceof ValidationException) {
-            // 不符合验证项
-            return new Result(-1, e.getMessage(), null);
-        }
-        System.out.println(e);
-        return new Result(0, e.getMessage(), null);
+        return new Result("0", e.getMessage(), null);
     }
 }
