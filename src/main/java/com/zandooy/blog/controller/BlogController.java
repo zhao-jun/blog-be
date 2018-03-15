@@ -25,9 +25,9 @@ public class BlogController {
 
     @PostMapping("blog")
     public void addBlog (@Valid Blog blog, BindingResult result) throws Exception {
-        if (result.hasErrors()) {
-            throw new ValidationException(result.getFieldError().getDefaultMessage());
-        }
+//        if (result.hasErrors()) {
+//            throw new ValidationException(result.getFieldError().getDefaultMessage());
+//        }
         blogService.add(blog);
     }
 
