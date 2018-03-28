@@ -23,4 +23,9 @@ public class BlogServiceImpl implements IBlogService {
     public Integer add (Blog blog) {
         return blogMapper.insertSelective(blog);
     }
+
+    @Override
+    public void delBlog (Integer code) {
+        blogMapper.deleteByPrimaryKey(code);
+    }
 }

@@ -6,6 +6,8 @@ import java.util.Date;
 public class Blog {
     private Integer id;
 
+    private String code;
+
     @NotNull(message = "标题必传")
     private String title;
 
@@ -18,8 +20,9 @@ public class Blog {
 
     private Date updateTime;
 
-    public Blog(Integer id, String title, Integer type, String content, Date createTime, Date updateTime) {
+    public Blog(Integer id, String code, String title, Integer type, Date createTime, Date updateTime) {
         this.id = id;
+        this.code = code;
         this.title = title;
         this.type = type;
         this.content = content;
@@ -39,12 +42,20 @@ public class Blog {
         this.id = id;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code == null ? null : code.trim();
+    }
+
     public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.title = title == null ? null : title.trim();
     }
 
     public Integer getType() {
@@ -55,12 +66,8 @@ public class Blog {
         this.type = type;
     }
 
-    public String getContent() {
-        return content;
-    }
-
     public void setContent(String content) {
-        this.content = content;
+      this.content = content == null ? null : content.trim();
     }
 
     public Date getCreateTime() {
@@ -77,6 +84,10 @@ public class Blog {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getContent() {
+        return content;
     }
 
     @Override

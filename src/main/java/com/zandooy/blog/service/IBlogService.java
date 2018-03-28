@@ -9,4 +9,6 @@ public interface IBlogService {
     List<Blog> getList (int pageNum,int pageSize);
 
     Integer add (Blog blog);
+
+    void delBlog (Integer code);
 }

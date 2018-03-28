@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.zandooy.blog.dto.Blog">
     <constructor>
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="code" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="type" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
@@ -13,15 +14,16 @@
   <resultMap id="ResultMapWithBLOBs" type="com.zandooy.blog.dto.Blog">
     <constructor>
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="code" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="type" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="content" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
       <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="content" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    id, title, type, create_time, update_time
+    id, code, title, type, create_time, update_time
   </sql>
   <sql id="Blob_Column_List">
     content
@@ -39,18 +41,21 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.zandooy.blog.dto.Blog">
-    insert into blog_info (id, title, type,
-    create_time, update_time, content
-    )
-    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER},
-    #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR}
-    )
+    insert into blog_info (id, code, title,
+    type, create_time, update_time,
+    content)
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR},
+    #{type,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
+    #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zandooy.blog.dto.Blog">
     insert into blog_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
+      </if>
+      <if test="code != null">
+        code,
       </if>
       <if test="title != null">
         title,
@@ -72,6 +77,9 @@
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
       <if test="title != null">
         #{title,jdbcType=VARCHAR},
       </if>
@@ -92,6 +100,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.zandooy.blog.dto.Blog">
     update blog_info
     <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
       <if test="title != null">
         title = #{title,jdbcType=VARCHAR},
       </if>
@@ -112,7 +123,8 @@
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zandooy.blog.dto.Blog">
     update blog_info
-    set title = #{title,jdbcType=VARCHAR},
+    set code = #{code,jdbcType=VARCHAR},
+    title = #{title,jdbcType=VARCHAR},
     type = #{type,jdbcType=INTEGER},
     create_time = #{createTime,jdbcType=TIMESTAMP},
     update_time = #{updateTime,jdbcType=TIMESTAMP},
@@ -121,10 +133,11 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.zandooy.blog.dto.Blog">
     update blog_info
-    set title = #{title,jdbcType=VARCHAR},
-    type = #{type,jdbcType=INTEGER},
-    create_time = #{createTime,jdbcType=TIMESTAMP},
-    update_time = #{updateTime,jdbcType=TIMESTAMP}
+    set code = #{code,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectList" resultMap="ResultMapWithBLOBs">

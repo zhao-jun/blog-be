@@ -4,6 +4,7 @@ import com.zandooy.blog.dto.Blog;
 import com.zandooy.blog.service.impl.BlogServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,9 +34,14 @@ public class BlogController {
 
     @GetMapping("blog")
     public void getBlog (@Valid Blog blog, BindingResult result) throws Exception {
-        if (result.hasErrors()) {
-            throw new ValidationException(result.getFieldError().getDefaultMessage());
-        }
+//        if (result.hasErrors()) {
+//            throw new ValidationException(result.getFieldError().getDefaultMessage());
+//        }
         blogService.add(blog);
+    }
+
+    @DeleteMapping("blog")
+    public void delBlog (Integer code) {
+        blogService.delBlog(code);
     }
 }
