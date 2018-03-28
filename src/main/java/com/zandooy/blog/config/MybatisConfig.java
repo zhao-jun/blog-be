@@ -1,4 +1,4 @@
-package com.zandooy.blog.interceptor.config;
+package com.zandooy.blog.config;
 
 import com.zandooy.blog.interceptor.MybatisCodeInterceptor;
 import org.apache.ibatis.plugin.Interceptor;
@@ -7,9 +7,7 @@ import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.boot.autoconfigure.ConfigurationCustomizer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -18,14 +16,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
-
+// 暂时不使用
 //@Configuration
 @EnableTransactionManagement
 public class MybatisConfig{
 
     @Autowired
     private DataSource dataSource;
-
 
     private String typeAliasesPackage;
 
@@ -74,8 +71,6 @@ public class MybatisConfig{
             public void customize(org.apache.ibatis.session.Configuration configuration) {
                 configuration.setLogPrefix("dao.");
             }
-
-
         };
     }
     /**
